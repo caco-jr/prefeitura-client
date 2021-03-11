@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import { PROJECT_NAME } from '@utils/strings';
 import Header from '@components/Header';
+import Footer from '@components/Footer';
 
 type Props = {
   children?: ReactNode;
@@ -27,6 +28,8 @@ const Layout: FunctionComponent<Props> = ({ children, title }) => (
     </Head>
     <Header />
     <main>{children}</main>
+
+    <Footer />
   </>
 );
 
