@@ -4,7 +4,7 @@ import { HomeTitle } from './style';
 import Layout from '@components/Layout';
 
 export const HomePage = (): JSX.Element => (
-  <Layout>
+  <Layout title="Home">
     <section className="container">
       <HomeTitle>Hello World!</HomeTitle>
     </section>
