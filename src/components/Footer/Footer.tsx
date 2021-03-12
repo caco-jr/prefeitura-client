@@ -1,8 +1,12 @@
+import Container from '@material-ui/core/Container';
+
 import * as S from './Footer.styles';
 
 const Footer = (): JSX.Element => (
   <S.Wrapper>
-    <h1>Footer</h1>
+    <Container fixed>
+      <h1>Footer</h1>
+    </Container>
   </S.Wrapper>
 );
 
