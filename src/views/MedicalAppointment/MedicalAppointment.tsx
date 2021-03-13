@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import * as S from './MedicalAppointment.styles';
 import Layout from '@components/Layout';
 import MedicalAppointmentAdd from './components/Add';
+import MedicalAppointmentList from './components/List';
 
 const appointments = [
   {
@@ -20,13 +21,7 @@ export const MedicalAppointmentPage = (): JSX.Element => (
 
         <MedicalAppointmentAdd />
 
-        {appointments.map(({ type, hospital, time }, index) => (
-          <section key={index}>
-            <span>Tipo: {type}</span>
-            <span>Hospital: {hospital}</span>
-            <span>Horário: {time}</span>
-          </section>
-        ))}
+        <MedicalAppointmentList list={appointments} />
       </Container>
     </S.Wrapper>
   </Layout>
