@@ -6,11 +6,18 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 import * as S from './Add.styles';
 
 const MedicalAppointmentAdd = (): JSX.Element => {
   const [open, setOpen] = useState(false);
+
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,6 +25,10 @@ const MedicalAppointmentAdd = (): JSX.Element => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
   };
 
   return (
@@ -31,13 +42,29 @@ const MedicalAppointmentAdd = (): JSX.Element => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">Fazer novo agendamento</DialogTitle>
 
         <DialogContent>
           <DialogContentText>
             To subscribe to this website, please enter your email address here.
             We will send updates occasionally.
           </DialogContentText>
+
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Date picker inline"
+              value={selectedDate}
+              onChange={handleDateChange}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </MuiPickersUtilsProvider>
 
           <TextField
             autoFocus
