@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { PROJECT_NAME } from '@utils/strings';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import Navbar from '@components/Navbar';
 
 type Props = {
   children?: ReactNode;
@@ -29,7 +28,6 @@ const Layout: FunctionComponent<Props> = ({ children, title }) => (
     </Head>
 
     <Header />
-    <Navbar />
 
     <main>{children}</main>
 
