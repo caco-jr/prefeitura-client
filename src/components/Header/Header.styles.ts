@@ -15,4 +15,5 @@ export const Title = styled.span`
   color: #fff;
   font-weight: bold;
   font-size: var(--title-md);
+  cursor: pointer;
 `;

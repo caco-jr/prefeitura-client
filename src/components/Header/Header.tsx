@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Container from '@material-ui/core/Container';
 
 import * as S from './Header.styles';
@@ -8,7 +9,9 @@ const Header = (): JSX.Element => (
   <S.Wrapper>
     <Container fixed>
       <S.Box>
-        <S.Title>{PROJECT_NAME}</S.Title>
+        <Link href="/">
+          <S.Title>{PROJECT_NAME}</S.Title>
+        </Link>
 
         <Navbar />
       </S.Box>
