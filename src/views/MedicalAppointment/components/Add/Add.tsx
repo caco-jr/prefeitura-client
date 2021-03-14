@@ -11,6 +11,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { GrScheduleNew } from 'react-icons/gr';
 
 import * as S from './Add.styles';
 
@@ -33,8 +34,12 @@ const MedicalAppointmentAdd = (): JSX.Element => {
 
   return (
     <S.Wrapper>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
+      <Button
+        variant="outlined"
+        onClick={handleClickOpen}
+        endIcon={<GrScheduleNew />}
+      >
+        Agendar nova consulta
       </Button>
 
       <Dialog
