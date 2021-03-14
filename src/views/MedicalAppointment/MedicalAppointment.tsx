@@ -11,6 +11,11 @@ const appointments = [
     hospital: 'Santa Isabel',
     time: '08:00',
   },
+  {
+    type: 'Oftalmologista',
+    hospital: 'Cruz Vermelha',
+    time: '09:00',
+  },
 ];
 
 export const MedicalAppointmentPage = (): JSX.Element => (
