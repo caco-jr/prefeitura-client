@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -12,17 +14,16 @@ import {
 } from '@material-ui/pickers';
 import { GrScheduleNew } from 'react-icons/gr';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 import * as S from './Add.styles';
+import ReactHookFormSelect from '@components/ReactHookFormSelect';
 
 const MedicalAppointmentAdd = (): JSX.Element => {
   const [open, setOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [type, setType] = useState('');
+  const { control, handleSubmit } = useForm();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -32,13 +33,8 @@ const MedicalAppointmentAdd = (): JSX.Element => {
     setOpen(false);
   };
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-  };
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setType(event.target.value as string);
-  };
+  // eslint-disable-next-line no-console
+  const onSubmit = data => console.log(data);
 
   return (
     <S.Wrapper>
@@ -55,74 +51,73 @@ const MedicalAppointmentAdd = (): JSX.Element => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Fazer novo agendamento</DialogTitle>
+        <S.Form onSubmit={handleSubmit(onSubmit)}>
+          <DialogTitle id="form-dialog-title">
+            Fazer novo agendamento
+          </DialogTitle>
 
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
+          <DialogContent>
+            <DialogContentText>
+              To subscribe to this website, please enter your email address
+              here. We will send updates occasionally.
+            </DialogContentText>
 
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="dd/MM/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Date picker inline"
-              value={selectedDate}
-              onChange={handleDateChange}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-            />
-          </MuiPickersUtilsProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Controller
+                id="date-picker-inline"
+                name="date"
+                control={control}
+                required
+                defaultValue={new Date()}
+                render={({ onChange, value }) => (
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="dd/MM/yyyy"
+                    margin="normal"
+                    label="Data"
+                    value={value}
+                    onChange={onChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'Altere a data',
+                    }}
+                  />
+                )}
+              />
+            </MuiPickersUtilsProvider>
 
-          <FormControl required>
-            <InputLabel id="demo-simple-select-required-label">Tipo</InputLabel>
+            <FormControl required>
+              <InputLabel id="appointment-type-label">Tipo</InputLabel>
 
-            <Select
-              labelId="demo-simple-select-required-label"
-              id="demo-simple-select-required"
-              value={type}
-              onChange={handleChange}
-            >
-              <MenuItem value="pediatra">Pediatra</MenuItem>
-              <MenuItem value="oftalmologista">Oftalmologista</MenuItem>
-            </Select>
+              <ReactHookFormSelect
+                id="appointment-type"
+                name="appointment_type"
+                label="Tipo da consulta"
+                control={control}
+                defaultValue={''}
+                variant="outlined"
+                margin="normal"
+                required
+              >
+                <MenuItem value="">Escolha uma opção</MenuItem>
+                <MenuItem value="pediatra">Pediatra</MenuItem>
+                <MenuItem value="oftalmologista">Oftalmologista</MenuItem>
+              </ReactHookFormSelect>
 
-            <FormHelperText>Required</FormHelperText>
-          </FormControl>
+              <FormHelperText>Required</FormHelperText>
+            </FormControl>
+          </DialogContent>
 
-          <FormControl required>
-            <InputLabel id="demo-simple-select-required-label">
-              Hospital
-            </InputLabel>
+          <DialogActions>
+            <Button type="button" onClick={handleClose} color="primary">
+              Cancelar
+            </Button>
 
-            <Select
-              labelId="demo-simple-select-required-label"
-              id="demo-simple-select-required"
-              value={type}
-              onChange={handleChange}
-            >
-              <MenuItem value="pediatra">Pediatra</MenuItem>
-              <MenuItem value="oftalmologista">Oftalmologista</MenuItem>
-            </Select>
-
-            <FormHelperText>Required</FormHelperText>
-          </FormControl>
-        </DialogContent>
-
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancelar
-          </Button>
-
-          <Button onClick={handleClose} color="primary">
-            Agendar
-          </Button>
-        </DialogActions>
+            <Button type="submit" color="primary">
+              Agendar
+            </Button>
+          </DialogActions>
+        </S.Form>
       </Dialog>
     </S.Wrapper>
   );
