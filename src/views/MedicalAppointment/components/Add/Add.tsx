@@ -43,9 +43,8 @@ const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
   const onSubmit = async data => {
     await registerAppointment(data);
 
-    handleClose();
-
     updateScreen();
+    handleClose();
   };
 
   return (
