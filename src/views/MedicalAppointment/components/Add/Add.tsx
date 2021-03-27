@@ -19,6 +19,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 import * as S from './Add.styles';
 import ReactHookFormSelect from '@components/ReactHookFormSelect';
+import AppointmentService from '@services/api/appointment';
 
 const MedicalAppointmentAdd = (): JSX.Element => {
   const [open, setOpen] = useState(false);
@@ -32,8 +33,18 @@ const MedicalAppointmentAdd = (): JSX.Element => {
     setOpen(false);
   };
 
+  const registerAppointment = async data => {
+    const appointmentAPI = new AppointmentService();
+
+    return await appointmentAPI.register(data);
+  };
+
   // eslint-disable-next-line no-console
-  const onSubmit = data => console.log(data);
+  const onSubmit = async data => {
+    await registerAppointment(data);
+
+    handleClose();
+  };
 
   return (
     <S.Wrapper>
@@ -97,13 +108,13 @@ const MedicalAppointmentAdd = (): JSX.Element => {
                   required
                 >
                   <MenuItem value="">Escolha uma opção</MenuItem>
-                  <MenuItem value="bom-clima">Bom Clima</MenuItem>
+                  <MenuItem value="Bom Clima">Bom Clima</MenuItem>
 
-                  <MenuItem value="nossa-senhora">
+                  <MenuItem value="Nossa Senhora">
                     Nossa Senhora Fátima
                   </MenuItem>
 
-                  <MenuItem value="sao-luiz">São Luiz</MenuItem>
+                  <MenuItem value="São Luiz">São Luiz</MenuItem>
                 </ReactHookFormSelect>
 
                 <FormHelperText>Required</FormHelperText>
@@ -112,7 +123,7 @@ const MedicalAppointmentAdd = (): JSX.Element => {
               <FormControl required>
                 <ReactHookFormSelect
                   id="appointment-type"
-                  name="appointment_type"
+                  name="type"
                   label="Tipo da consulta"
                   control={control}
                   defaultValue={''}

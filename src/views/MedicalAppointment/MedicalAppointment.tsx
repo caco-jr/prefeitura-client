@@ -5,20 +5,7 @@ import Layout from '@components/Layout';
 import MedicalAppointmentAdd from './components/Add';
 import MedicalAppointmentList from './components/List';
 
-const appointments = [
-  {
-    type: 'Pediatra',
-    hospital: 'Santa Isabel',
-    time: '08:00',
-  },
-  {
-    type: 'Oftalmologista',
-    hospital: 'Cruz Vermelha',
-    time: '09:00',
-  },
-];
-
-export const MedicalAppointmentPage = (): JSX.Element => (
+export const MedicalAppointmentPage = ({ appointments }): JSX.Element => (
   <Layout title="Consultas">
     <S.Wrapper>
       <Container fixed>
