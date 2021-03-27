@@ -14,7 +14,6 @@ import {
 } from '@material-ui/pickers';
 import { GrScheduleNew } from 'react-icons/gr';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
@@ -62,50 +61,49 @@ const MedicalAppointmentAdd = (): JSX.Element => {
               here. We will send updates occasionally.
             </DialogContentText>
 
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Controller
-                id="date-picker-inline"
-                name="date"
-                control={control}
-                required
-                defaultValue={new Date()}
-                render={({ onChange, value }) => (
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="dd/MM/yyyy"
-                    margin="normal"
-                    label="Data"
-                    value={value}
-                    onChange={onChange}
-                    KeyboardButtonProps={{
-                      'aria-label': 'Altere a data',
-                    }}
-                  />
-                )}
-              />
-            </MuiPickersUtilsProvider>
+            <S.FormWrapper>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Controller
+                  id="date-picker-inline"
+                  name="date"
+                  control={control}
+                  required
+                  defaultValue={new Date()}
+                  render={({ onChange, value }) => (
+                    <KeyboardDatePicker
+                      disableToolbar
+                      variant="inline"
+                      format="dd/MM/yyyy"
+                      margin="normal"
+                      label="Data"
+                      value={value}
+                      onChange={onChange}
+                      KeyboardButtonProps={{
+                        'aria-label': 'Altere a data',
+                      }}
+                    />
+                  )}
+                />
+              </MuiPickersUtilsProvider>
 
-            <FormControl required>
-              <InputLabel id="appointment-type-label">Tipo</InputLabel>
+              <FormControl required>
+                <ReactHookFormSelect
+                  id="appointment-type"
+                  name="appointment_type"
+                  label="Tipo da consulta"
+                  control={control}
+                  defaultValue={''}
+                  margin="normal"
+                  required
+                >
+                  <MenuItem value="">Escolha uma opção</MenuItem>
+                  <MenuItem value="pediatra">Pediatra</MenuItem>
+                  <MenuItem value="oftalmologista">Oftalmologista</MenuItem>
+                </ReactHookFormSelect>
 
-              <ReactHookFormSelect
-                id="appointment-type"
-                name="appointment_type"
-                label="Tipo da consulta"
-                control={control}
-                defaultValue={''}
-                variant="outlined"
-                margin="normal"
-                required
-              >
-                <MenuItem value="">Escolha uma opção</MenuItem>
-                <MenuItem value="pediatra">Pediatra</MenuItem>
-                <MenuItem value="oftalmologista">Oftalmologista</MenuItem>
-              </ReactHookFormSelect>
-
-              <FormHelperText>Required</FormHelperText>
-            </FormControl>
+                <FormHelperText>Required</FormHelperText>
+              </FormControl>
+            </S.FormWrapper>
           </DialogContent>
 
           <DialogActions>
