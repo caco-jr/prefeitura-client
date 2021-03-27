@@ -64,9 +64,7 @@ const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
         aria-labelledby="form-dialog-title"
       >
         <S.Form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitle id="form-dialog-title">
-            Fazer novo agendamento
-          </DialogTitle>
+          <DialogTitle id="form-dialog-title">Nova consulta</DialogTitle>
 
           <DialogContent>
             <DialogContentText>
