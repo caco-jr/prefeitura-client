@@ -68,8 +68,7 @@ const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
 
           <DialogContent>
             <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
+              Preencha os campos a seguir para criar uma nova consulta.
             </DialogContentText>
 
             <S.FormWrapper>
