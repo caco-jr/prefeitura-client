@@ -11,6 +11,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
+  KeyboardTimePicker,
 } from '@material-ui/pickers';
 import { GrScheduleNew } from 'react-icons/gr';
 import FormControl from '@material-ui/core/FormControl';
@@ -87,11 +88,36 @@ const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
                       variant="inline"
                       format="dd/MM/yyyy"
                       margin="normal"
-                      label="Data"
+                      label="Dia"
+                      value={value}
+                      onChange={onChange}
+                      minDate={new Date()}
+                      KeyboardButtonProps={{
+                        'aria-label': 'Altere a data',
+                      }}
+                    />
+                  )}
+                />
+              </MuiPickersUtilsProvider>
+
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Controller
+                  id="date-picker-inline"
+                  name="time"
+                  control={control}
+                  required
+                  defaultValue={new Date()}
+                  render={({ onChange, value }) => (
+                    <KeyboardTimePicker
+                      disableToolbar
+                      variant="inline"
+                      format="HH:mm"
+                      margin="normal"
+                      label="Horário"
                       value={value}
                       onChange={onChange}
                       KeyboardButtonProps={{
-                        'aria-label': 'Altere a data',
+                        'aria-label': 'Altere o horário',
                       }}
                     />
                   )}
