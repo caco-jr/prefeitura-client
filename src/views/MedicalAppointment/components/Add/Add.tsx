@@ -88,6 +88,29 @@ const MedicalAppointmentAdd = (): JSX.Element => {
 
               <FormControl required>
                 <ReactHookFormSelect
+                  id="hospital"
+                  name="hospital"
+                  label="Hospital"
+                  control={control}
+                  defaultValue={''}
+                  margin="normal"
+                  required
+                >
+                  <MenuItem value="">Escolha uma opção</MenuItem>
+                  <MenuItem value="bom-clima">Bom Clima</MenuItem>
+
+                  <MenuItem value="nossa-senhora">
+                    Nossa Senhora Fátima
+                  </MenuItem>
+
+                  <MenuItem value="sao-luiz">São Luiz</MenuItem>
+                </ReactHookFormSelect>
+
+                <FormHelperText>Required</FormHelperText>
+              </FormControl>
+
+              <FormControl required>
+                <ReactHookFormSelect
                   id="appointment-type"
                   name="appointment_type"
                   label="Tipo da consulta"
