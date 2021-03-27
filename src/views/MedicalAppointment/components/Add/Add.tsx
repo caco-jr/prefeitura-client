@@ -21,7 +21,7 @@ import * as S from './Add.styles';
 import ReactHookFormSelect from '@components/ReactHookFormSelect';
 import AppointmentService from '@services/api/appointment';
 
-const MedicalAppointmentAdd = (): JSX.Element => {
+const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
   const [open, setOpen] = useState(false);
   const { control, handleSubmit } = useForm();
 
@@ -44,6 +44,8 @@ const MedicalAppointmentAdd = (): JSX.Element => {
     await registerAppointment(data);
 
     handleClose();
+
+    updateScreen();
   };
 
   return (
