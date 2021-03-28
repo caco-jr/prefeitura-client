@@ -6,9 +6,11 @@ import Layout from '@components/Layout';
 import MedicalAppointmentAdd from './components/Add';
 import MedicalAppointmentList from './components/List';
 import AppointmentService from '@services/api/appointment';
+import MedicalAppointmentUpdate from './components/Update';
 
 export const MedicalAppointmentPage = ({ appointments }): JSX.Element => {
   const [appointmentsList, setAppointmentsList] = useState(appointments);
+  const [open, setOpen] = useState(false);
 
   const getAppointments = async () => {
     const appointmentAPI = new AppointmentService();
@@ -24,6 +26,12 @@ export const MedicalAppointmentPage = ({ appointments }): JSX.Element => {
           <h1>Consultas</h1>
 
           <MedicalAppointmentAdd updateScreen={getAppointments} />
+
+          <MedicalAppointmentUpdate
+            updateScreen={getAppointments}
+            isOpen={open}
+            handleModalClose={() => setOpen(false)}
+          />
 
           <MedicalAppointmentList list={appointmentsList} />
         </Container>
