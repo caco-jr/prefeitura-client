@@ -11,6 +11,7 @@ import * as S from './List.styles';
 
 type IProps = {
   list: any;
+  handleSelected: (appointment: any) => void;
 };
 
 const useStyles = makeStyles({
@@ -26,45 +27,57 @@ const useStyles = makeStyles({
   },
 });
 
-const MedicalAppointmentList = ({ list }: IProps): JSX.Element => {
+const MedicalAppointmentList = ({
+  list,
+  handleSelected,
+}: IProps): JSX.Element => {
   const classes = useStyles();
 
   return (
     <S.Wrapper>
       <Grid container spacing={3}>
-        {list.map(({ type, hospital, time }, index) => (
-          <Grid container item xs={12} md={4} key={index}>
-            <Card className={classes.root} variant="outlined">
-              <CardContent>
-                <Typography
-                  className={classes.title}
-                  color="textSecondary"
-                  gutterBottom
-                >
-                  {time}
-                </Typography>
+        {list.map((appointment, index) => {
+          const { type, hospital, time } = appointment;
 
-                <Typography variant="h5" component="h2">
-                  {type}
-                </Typography>
+          return (
+            <Grid container item xs={12} md={4} key={index}>
+              <Card className={classes.root} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                  >
+                    {time}
+                  </Typography>
 
-                <Typography className={classes.pos} color="textSecondary">
-                  <RiHospitalLine /> {hospital}
-                </Typography>
+                  <Typography variant="h5" component="h2">
+                    {type}
+                  </Typography>
 
-                <Typography variant="body2" component="p">
-                  well meaning and kindly.
-                  <br />
-                  {'"a benevolent smile"'}
-                </Typography>
-              </CardContent>
+                  <Typography className={classes.pos} color="textSecondary">
+                    <RiHospitalLine /> {hospital}
+                  </Typography>
 
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+                  <Typography variant="body2" component="p">
+                    well meaning and kindly.
+                    <br />
+                    {'"a benevolent smile"'}
+                  </Typography>
+                </CardContent>
+
+                <CardActions>
+                  <Button
+                    size="small"
+                    onClick={() => handleSelected(appointment)}
+                  >
+                    Atualizar
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          );
+        })}
       </Grid>
     </S.Wrapper>
   );

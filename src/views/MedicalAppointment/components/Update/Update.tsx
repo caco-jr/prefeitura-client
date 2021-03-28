@@ -5,8 +5,8 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -25,13 +25,14 @@ const MedicalAppointmentUpdate = ({
   updateScreen,
   isOpen,
   handleModalClose,
+  appointment,
 }): JSX.Element => {
   const { control, handleSubmit } = useForm();
 
   const registerAppointment = async data => {
     const appointmentAPI = new AppointmentService();
 
-    return await appointmentAPI.update('oi', data);
+    return await appointmentAPI.update(appointment.id, data);
   };
 
   // eslint-disable-next-line no-console
@@ -50,7 +51,7 @@ const MedicalAppointmentUpdate = ({
         aria-labelledby="form-dialog-title"
       >
         <S.Form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitle id="form-dialog-title">Nova consulta</DialogTitle>
+          <DialogTitle id="form-dialog-title">Atualizar consulta</DialogTitle>
 
           <DialogContent>
             <DialogContentText>
@@ -64,7 +65,7 @@ const MedicalAppointmentUpdate = ({
                   name="date"
                   control={control}
                   required
-                  defaultValue={new Date()}
+                  defaultValue={appointment.date}
                   render={({ onChange, value }) => (
                     <KeyboardDatePicker
                       disableToolbar
@@ -89,7 +90,7 @@ const MedicalAppointmentUpdate = ({
                   name="time"
                   control={control}
                   required
-                  defaultValue={new Date()}
+                  defaultValue={appointment.time}
                   render={({ onChange, value }) => (
                     <KeyboardTimePicker
                       disableToolbar
@@ -113,7 +114,7 @@ const MedicalAppointmentUpdate = ({
                   name="hospital"
                   label="Hospital"
                   control={control}
-                  defaultValue={''}
+                  defaultValue={appointment.hospital}
                   margin="normal"
                   required
                 >
@@ -136,7 +137,7 @@ const MedicalAppointmentUpdate = ({
                   name="type"
                   label="Tipo da consulta"
                   control={control}
-                  defaultValue={''}
+                  defaultValue={appointment.type}
                   margin="normal"
                   required
                 >
@@ -156,7 +157,7 @@ const MedicalAppointmentUpdate = ({
             </Button>
 
             <Button type="submit" color="primary">
-              Agendar
+              Atualizar Agendamento
             </Button>
           </DialogActions>
         </S.Form>
