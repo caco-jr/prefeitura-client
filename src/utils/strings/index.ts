@@ -1,4 +1,4 @@
-export const PROJECT_NAME = 'Município de Bom Destino - Serviços ao Cidadão"';
+export const PROJECT_NAME = 'Município de Bom Destino - Serviços ao Cidadão';
 
 export const slugify = (text: string): string => {
   if (!text || typeof text !== 'string') {
