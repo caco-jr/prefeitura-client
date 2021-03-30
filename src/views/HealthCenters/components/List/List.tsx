@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Chip from '@material-ui/core/Chip';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import { IHealthCenter } from '@interfaces/healthCenterInterface';
 import * as S from './List.styles';
@@ -31,7 +36,15 @@ const HealthCentersList = ({ list }: IProps): JSX.Element => {
     <S.Wrapper>
       <Grid container spacing={3}>
         {list.map(
-          ({ id, name, type_institution, maintaining_entity, address }) => (
+          ({
+            id,
+            name,
+            type_institution,
+            maintaining_entity,
+            health_insurance,
+            address,
+            services,
+          }) => (
             <Grid container item xs={12} md={4} key={id}>
               <Card className={classes.root} variant="outlined">
                 <CardContent>
@@ -55,6 +68,44 @@ const HealthCentersList = ({ list }: IProps): JSX.Element => {
                     {address.street} - {address.number}, {address.district},{' '}
                     {address.cep}, {address.city} - {address.state}
                   </Typography>
+
+                  <S.AccordionWrapper>
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<MdKeyboardArrowDown />}
+                        aria-controls="panel1a-content"
+                      >
+                        <Typography>Serviços disponíveis</Typography>
+                      </AccordionSummary>
+
+                      <AccordionDetails>
+                        <S.ChipWrapper>
+                          {services.map((service, index) => (
+                            <Chip label={service} key={index} />
+                          ))}
+                        </S.ChipWrapper>
+                      </AccordionDetails>
+                    </Accordion>
+
+                    {health_insurance && (
+                      <Accordion>
+                        <AccordionSummary
+                          expandIcon={<MdKeyboardArrowDown />}
+                          aria-controls="panel1a-content"
+                        >
+                          <Typography>Convênios aceitos</Typography>
+                        </AccordionSummary>
+
+                        <AccordionDetails>
+                          <S.ChipWrapper>
+                            {health_insurance.map((healthInsurance, index) => (
+                              <Chip label={healthInsurance} key={index} />
+                            ))}
+                          </S.ChipWrapper>
+                        </AccordionDetails>
+                      </Accordion>
+                    )}
+                  </S.AccordionWrapper>
                 </CardContent>
               </Card>
             </Grid>
