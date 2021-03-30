@@ -11,7 +11,7 @@ export const HealthCentersPage = ({ list }: IProps): JSX.Element => (
   <Layout title="Health centers">
     <section className="container">
       <S.Wrapper>
-        <h1>Centros de Saúde</h1>
+        <h1>Instituições de Saúde</h1>
 
         <HealthCentersList list={list} />
       </S.Wrapper>
