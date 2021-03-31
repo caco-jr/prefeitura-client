@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -41,12 +41,10 @@ const HealthCentersFilter = ({
   ) => {
     if (type === 'institution') {
       setTypeInstitution(event.target.value as string);
-      handleFilteredList(getFilteredList());
       return;
     }
 
     setDistrict(event.target.value as string);
-    handleFilteredList(getFilteredList());
   };
 
   const getFilteredList = (): IHealthCenter[] => {
@@ -71,6 +69,10 @@ const HealthCentersFilter = ({
       );
     }
   };
+
+  useEffect(() => {
+    handleFilteredList(getFilteredList());
+  }, [typeInstitution, district]);
 
   return (
     <S.Wrapper>
