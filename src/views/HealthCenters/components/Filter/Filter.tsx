@@ -11,7 +11,7 @@ import * as S from './Filter.styles';
 
 type IProps = {
   list: IHealthCenter[];
-  handleFilteredList?: () => void;
+  handleFilteredList: (filteredList: IHealthCenter[]) => void;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,7 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const HealthCentersFilter = ({ list }: IProps): JSX.Element => {
+const HealthCentersFilter = ({
+  list,
+  handleFilteredList,
+}: IProps): JSX.Element => {
   const [typeInstitution, setTypeInstitution] = useState('');
   const [district, setDistrict] = useState('');
 
@@ -38,10 +41,35 @@ const HealthCentersFilter = ({ list }: IProps): JSX.Element => {
   ) => {
     if (type === 'institution') {
       setTypeInstitution(event.target.value as string);
+      handleFilteredList(getFilteredList());
       return;
     }
 
     setDistrict(event.target.value as string);
+    handleFilteredList(getFilteredList());
+  };
+
+  const getFilteredList = (): IHealthCenter[] => {
+    if (!typeInstitution && !district) {
+      return list;
+    }
+
+    if (typeInstitution && district) {
+      return list.filter(
+        ({ address, type_institution }) =>
+          type_institution === typeInstitution && address.district === district
+      );
+    }
+
+    if (district) {
+      return list.filter(({ address }) => address.district === district);
+    }
+
+    if (typeInstitution) {
+      return list.filter(
+        ({ type_institution }) => type_institution === typeInstitution
+      );
+    }
   };
 
   return (

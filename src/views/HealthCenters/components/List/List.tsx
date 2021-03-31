@@ -35,7 +35,7 @@ const HealthCentersList = ({ list }: IProps): JSX.Element => {
   return (
     <S.Wrapper>
       <Grid container spacing={3}>
-        {list.map(
+        {list?.map(
           ({
             id,
             name,
