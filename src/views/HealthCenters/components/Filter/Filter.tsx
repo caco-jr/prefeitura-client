@@ -28,10 +28,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const HealthCentersFilter = ({ list }: IProps): JSX.Element => {
   const classes = useStyles();
-  const [typeInstitution, setTypeInstitution] = useState('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setTypeInstitution(event.target.value as string);
+  const [typeInstitution, setTypeInstitution] = useState('');
+  const [district, setDistrict] = useState('');
+
+  const handleChange = (
+    event: React.ChangeEvent<{ value: unknown }>,
+    type: 'institution' | 'district'
+  ) => {
+    if (type === 'institution') {
+      setTypeInstitution(event.target.value as string);
+      return;
+    }
+
+    setDistrict(event.target.value as string);
   };
 
   return (
@@ -42,7 +52,7 @@ const HealthCentersFilter = ({ list }: IProps): JSX.Element => {
           labelId="type-institution-label"
           id="type-institution"
           value={typeInstitution}
-          onChange={handleChange}
+          onChange={event => handleChange(event, 'institution')}
         >
           <MenuItem value="">
             <em>Todos</em>
@@ -51,10 +61,32 @@ const HealthCentersFilter = ({ list }: IProps): JSX.Element => {
           {[
             ...new Set(list.map(({ type_institution }) => type_institution)),
           ].map((item, index) => (
-            <MenuItem value={item} key={`${index}-filter`}>
+            <MenuItem value={item} key={`${index}-type`}>
               {item}
             </MenuItem>
           ))}
+        </Select>
+      </FormControl>
+
+      <FormControl className={classes.formControl}>
+        <InputLabel id="type-institution">Bairro</InputLabel>
+        <Select
+          labelId="type-institution-label"
+          id="type-institution"
+          value={district}
+          onChange={event => handleChange(event, 'district')}
+        >
+          <MenuItem value="">
+            <em>Todos</em>
+          </MenuItem>
+
+          {[...new Set(list.map(({ address }) => address.district))].map(
+            (item, index) => (
+              <MenuItem value={item} key={`${index}-district`}>
+                {item}
+              </MenuItem>
+            )
+          )}
         </Select>
       </FormControl>
     </S.Wrapper>
