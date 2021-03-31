@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const HealthCentersFilter = ({ list }: IProps): JSX.Element => {
-  const classes = useStyles();
-
   const [typeInstitution, setTypeInstitution] = useState('');
   const [district, setDistrict] = useState('');
+
+  const classes = useStyles();
 
   const handleChange = (
     event: React.ChangeEvent<{ value: unknown }>,
