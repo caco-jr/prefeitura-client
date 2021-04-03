@@ -10,6 +10,7 @@ import {
 import Button from '@material-ui/core/Button';
 
 import * as S from './RegisterForm.styles';
+import UserService from '@services/api/users';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +26,19 @@ const RegisterForm = (): JSX.Element => {
 
   const classes = useStyles();
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = async data => {
+    const userService = new UserService();
+
+    try {
+      await userService.register(data);
+
+      // TODO: Fazer o redirecionamento para a página desejada
+      // eslint-disable-next-line no-console
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <S.Wrapper className={classes.root} onSubmit={handleSubmit(onSubmit)}>
