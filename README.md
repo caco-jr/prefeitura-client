@@ -1,4 +1,4 @@
-# NextJS Typescript Boilerplate
+# CLIENT APP GOOD DESTINY
 
 Bootstrap a developer-friendly NextJS app configured with:
 
