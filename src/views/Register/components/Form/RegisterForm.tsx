@@ -20,9 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-type IProps = {};
-
-const RegisterForm = ({}: IProps): JSX.Element => {
+const RegisterForm = (): JSX.Element => {
   const { handleSubmit, register, control } = useForm();
 
   const classes = useStyles();
@@ -82,7 +80,9 @@ const RegisterForm = ({}: IProps): JSX.Element => {
         required
       />
 
-      <Button type="submit">Cadastrar</Button>
+      <Button type="submit" variant="contained" color="primary">
+        Cadastrar
+      </Button>
     </S.Wrapper>
   );
 };
