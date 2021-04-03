@@ -14,7 +14,7 @@ class AppointmentService extends BaseAPIService {
   }
 
   update(id: string, appointment): Promise<any> {
-    return this.put({ pathName: `/appointments/${id}`, body: appointment });
+    return this.patch({ pathName: `/appointments/${id}`, body: appointment });
   }
 }
 

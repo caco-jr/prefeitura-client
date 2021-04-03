@@ -36,4 +36,10 @@ export default class BaseAPIService {
       .put(this.buildURL(pathName), body)
       .then(response => response.data);
   }
+
+  patch({ pathName, body }: IPutParams): Promise<any> {
+    return axios
+      .patch(this.buildURL(pathName), body)
+      .then(response => response.data);
+  }
 }
