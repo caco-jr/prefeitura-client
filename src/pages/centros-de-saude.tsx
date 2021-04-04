@@ -1,9 +1,9 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import HealthCenterService from '@services/api/healthCenter';
 
 export { default } from '@views/HealthCenters';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const healthCentersAPI = new HealthCenterService();
 
@@ -11,8 +11,13 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return { props: { list: healthCenters } };
   } catch (err) {
-    console.error(err);
+    console.error(err.data);
 
-    return { props: { errors: '' } };
+    return {
+      redirect: {
+        destination: '/login?redirectTo="/centros-de-saude"',
+        permanent: false,
+      },
+    };
   }
 };
