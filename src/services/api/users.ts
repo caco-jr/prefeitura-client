@@ -16,6 +16,13 @@ class UserService extends BaseAPIService {
   update(id: string, appointment): Promise<any> {
     return this.patch({ pathName: `/users/${id}`, body: appointment });
   }
+
+  login(loginInfo: {
+    username: string;
+    password: string;
+  }): Promise<{ access_token: string }> {
+    return this.post({ pathName: `/auth/login`, body: loginInfo });
+  }
 }
 
 export default UserService;
