@@ -4,7 +4,7 @@ import Link from 'next/link';
 import * as S from './Navbar.styles';
 
 const menuList = [
-  { label: 'Saúde', to: '/consultas-medicas' },
+  { label: 'Saúde', to: '/saude' },
   { label: 'Agropecuária', to: '/' },
   { label: 'Meio Ambiente', to: '/' },
 ];
