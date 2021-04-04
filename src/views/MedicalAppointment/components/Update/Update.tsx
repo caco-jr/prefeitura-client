@@ -136,10 +136,10 @@ const MedicalAppointmentUpdate = ({
               <FormControl required>
                 <ReactHookFormSelect
                   id="appointment-type"
-                  name="type"
+                  name="service_type"
                   label="Tipo da consulta"
                   control={control}
-                  defaultValue={appointment.type}
+                  defaultValue={appointment.service_type}
                   margin="normal"
                   required
                 >
