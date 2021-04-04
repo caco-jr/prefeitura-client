@@ -93,7 +93,12 @@ const RegisterForm = (): JSX.Element => {
         required
       />
 
-      <Button type="submit" variant="contained" color="primary">
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        className="submit-button"
+      >
         Cadastrar
       </Button>
     </S.Wrapper>
