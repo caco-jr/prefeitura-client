@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
     return {
       redirect: {
-        destination: '/login?redirectTo="/centros-de-saude"',
+        destination: '/login?redirectTo=/centros-de-saude',
         permanent: false,
       },
     };

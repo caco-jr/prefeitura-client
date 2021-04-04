@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,6 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LoginForm = (): JSX.Element => {
+  const router = useRouter();
   const { handleSubmit, register } = useForm();
 
   const classes = useStyles();
@@ -25,7 +27,14 @@ const LoginForm = (): JSX.Element => {
     const userService = new UserService();
 
     try {
+      const { push, query } = router;
+      const redirectParam = Array.isArray(query.redirectTo)
+        ? query.redirectTo[0]
+        : query.redirectTo;
+
       await userService.login(data);
+
+      push(redirectParam);
     } catch (err) {
       console.error(err);
     }

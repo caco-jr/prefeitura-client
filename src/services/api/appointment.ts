@@ -1,8 +1,8 @@
 import BaseAPIService from './base';
 
 class AppointmentService extends BaseAPIService {
-  getAll(): Promise<any> {
-    return this.get({ pathName: `/appointments` });
+  getAll(jwtToken: string): Promise<any> {
+    return this.get({ pathName: `/appointments`, jwtToken });
   }
 
   getByID(id): Promise<any> {
