@@ -61,7 +61,13 @@ const RegisterForm = (): JSX.Element => {
 
       <TextField label="CPF" inputRef={register} name="cpf" required />
       <TextField label="RG" inputRef={register} name="rg" required />
-      <TextField label="E-mail" inputRef={register} name="email" required />
+      <TextField
+        label="E-mail"
+        inputRef={register}
+        name="email"
+        type="email"
+        required
+      />
 
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Controller
