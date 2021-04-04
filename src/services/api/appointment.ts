@@ -18,7 +18,7 @@ class AppointmentService extends BaseAPIService {
   }
 
   update(id: string, appointment, jwtToken: string): Promise<any> {
-    return this.patch({
+    return this.put({
       pathName: `/appointments/${id}`,
       body: appointment,
       jwtToken,
