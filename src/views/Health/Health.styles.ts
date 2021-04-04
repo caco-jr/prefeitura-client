@@ -12,11 +12,22 @@ export const CardWrapper = styled.section`
   gap: 30px;
 
   .c-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
     cursor: pointer;
+    transform: translateY(0);
+    transition: 0.3s all ease;
 
     &__content {
       text-align: center;
-      font-size: var(--text-lg);
+      font-size: var(--title-sm);
+    }
+
+    &:hover {
+      box-shadow: var(--box-shadow-popout);
+      transform: translateY(-6px);
     }
   }
 `;
