@@ -54,7 +54,7 @@ const MedicalAppointmentList = ({
     <S.Wrapper>
       <Grid container spacing={3}>
         {list.map((appointment, index) => {
-          const { type, hospital, time, date } = appointment;
+          const { service_type, hospital, time, date } = appointment;
 
           return (
             <Grid container item xs={12} md={4} key={index}>
@@ -69,7 +69,7 @@ const MedicalAppointmentList = ({
                   </Typography>
 
                   <Typography variant="h5" component="h2">
-                    {type}
+                    {service_type}
                   </Typography>
 
                   <Typography className={classes.pos} color="textSecondary">
