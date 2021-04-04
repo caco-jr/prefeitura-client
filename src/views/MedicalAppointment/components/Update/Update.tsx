@@ -20,6 +20,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import * as S from './Update.styles';
 import ReactHookFormSelect from '@components/ReactHookFormSelect';
 import AppointmentService from '@services/api/appointment';
+import { getToken } from '@utils/cookies';
 
 const MedicalAppointmentUpdate = ({
   updateScreen,
@@ -32,7 +33,7 @@ const MedicalAppointmentUpdate = ({
   const registerAppointment = async data => {
     const appointmentAPI = new AppointmentService();
 
-    return await appointmentAPI.update(appointment.id, data);
+    return await appointmentAPI.update(appointment.id, data, getToken());
   };
 
   // eslint-disable-next-line no-console

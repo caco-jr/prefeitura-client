@@ -7,6 +7,7 @@ import MedicalAppointmentAdd from './components/Add';
 import MedicalAppointmentList from './components/List';
 import AppointmentService from '@services/api/appointment';
 import MedicalAppointmentUpdate from './components/Update';
+import { getToken } from '@utils/cookies';
 
 export const MedicalAppointmentPage = ({ appointments }): JSX.Element => {
   const [appointmentsList, setAppointmentsList] = useState(appointments);
@@ -15,7 +16,7 @@ export const MedicalAppointmentPage = ({ appointments }): JSX.Element => {
 
   const getAppointments = async () => {
     const appointmentAPI = new AppointmentService();
-    const updatedAppointments = await appointmentAPI.getAll();
+    const updatedAppointments = await appointmentAPI.getAll(getToken());
 
     setAppointmentsList(updatedAppointments);
   };

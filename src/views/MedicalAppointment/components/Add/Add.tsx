@@ -21,6 +21,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import * as S from './Add.styles';
 import ReactHookFormSelect from '@components/ReactHookFormSelect';
 import AppointmentService from '@services/api/appointment';
+import { getToken } from '@utils/cookies';
 
 const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
   const [open, setOpen] = useState(false);
@@ -37,7 +38,7 @@ const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
   const registerAppointment = async data => {
     const appointmentAPI = new AppointmentService();
 
-    return await appointmentAPI.register(data);
+    return await appointmentAPI.register(data, getToken());
   };
 
   // eslint-disable-next-line no-console

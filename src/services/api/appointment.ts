@@ -5,16 +5,24 @@ class AppointmentService extends BaseAPIService {
     return this.get({ pathName: `/appointments`, jwtToken });
   }
 
-  getByID(id): Promise<any> {
-    return this.get({ pathName: `/appointments/${id}` });
+  getByID(id, jwtToken: string): Promise<any> {
+    return this.get({ pathName: `/appointments/${id}`, jwtToken });
   }
 
-  register(appointment): Promise<any> {
-    return this.post({ pathName: `/appointments`, body: appointment });
+  register(appointment, jwtToken: string): Promise<any> {
+    return this.post({
+      pathName: `/appointments`,
+      body: appointment,
+      jwtToken,
+    });
   }
 
-  update(id: string, appointment): Promise<any> {
-    return this.patch({ pathName: `/appointments/${id}`, body: appointment });
+  update(id: string, appointment, jwtToken: string): Promise<any> {
+    return this.patch({
+      pathName: `/appointments/${id}`,
+      body: appointment,
+      jwtToken,
+    });
   }
 }
 
