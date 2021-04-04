@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { PROJECT_NAME } from '@utils/strings';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
+import Toast from '@components/Toast';
 import * as S from './styles';
 
 type Props = {
@@ -30,7 +31,20 @@ const Layout: FunctionComponent<Props> = ({ children, title }) => (
 
     <Header />
 
-    <S.Main>{children}</S.Main>
+    <S.Main>
+      {children}
+
+      <Toast
+        position="bottom-center"
+        autoClose={3000}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </S.Main>
 
     <Footer />
   </>

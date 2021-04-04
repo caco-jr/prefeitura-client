@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import { showToast } from '@components/Toast';
 import * as S from './Form.styles';
 import UserService from '@services/api/users';
 
@@ -37,6 +38,19 @@ const LoginForm = (): JSX.Element => {
       push(redirectParam);
     } catch (err) {
       console.error(err);
+
+      showToast({
+        type: 'error',
+        content: 'Usuário ou senha incorreto, tente novamente',
+        options: {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        },
+      });
     }
   };
 
