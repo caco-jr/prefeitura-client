@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: '100%',
     },
   },
 }));
@@ -43,7 +43,12 @@ const LoginForm = (): JSX.Element => {
         required
       />
 
-      <Button type="submit" variant="contained" color="primary">
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        className="c-login-button"
+      >
         Entrar
       </Button>
     </S.Wrapper>

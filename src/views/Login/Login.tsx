@@ -6,7 +6,7 @@ export const LoginPage = (): JSX.Element => (
   <Layout title="Login">
     <section className="container">
       <S.Wrapper>
-        <h1>Login</h1>
+        <S.Title>Login</S.Title>
 
         <LoginForm />
       </S.Wrapper>
