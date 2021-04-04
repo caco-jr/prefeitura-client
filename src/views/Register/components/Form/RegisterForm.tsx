@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useForm, Controller } from 'react-hook-form';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const RegisterForm = (): JSX.Element => {
+  const router = useRouter();
   const { handleSubmit, register, control } = useForm();
 
   const classes = useStyles();
@@ -30,11 +32,11 @@ const RegisterForm = (): JSX.Element => {
     const userService = new UserService();
 
     try {
+      const { push, query } = router;
+
       await userService.register(data);
 
-      // TODO: Fazer o redirecionamento para a página desejada
-      // eslint-disable-next-line no-console
-      console.log(data);
+      push({ pathname: '/login', query });
     } catch (err) {
       console.error(err);
     }
