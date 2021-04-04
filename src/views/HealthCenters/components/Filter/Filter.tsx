@@ -89,7 +89,7 @@ const HealthCentersFilter = ({
           </MenuItem>
 
           {[
-            ...new Set(list.map(({ type_institution }) => type_institution)),
+            ...new Set(list?.map(({ type_institution }) => type_institution)),
           ].map((item, index) => (
             <MenuItem value={item} key={`${index}-type`}>
               {item}
@@ -110,7 +110,7 @@ const HealthCentersFilter = ({
             <em>Todos</em>
           </MenuItem>
 
-          {[...new Set(list.map(({ address }) => address.district))].map(
+          {[...new Set(list?.map(({ address }) => address.district))].map(
             (item, index) => (
               <MenuItem value={item} key={`${index}-district`}>
                 {item}

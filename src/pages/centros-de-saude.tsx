@@ -11,6 +11,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return { props: { list: healthCenters } };
   } catch (err) {
-    return { props: { errors: err } };
+    console.error(err);
+
+    return { props: { errors: '' } };
   }
 };
