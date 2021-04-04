@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-
 import { useForm, Controller } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -36,7 +34,6 @@ const MedicalAppointmentUpdate = ({
     return await appointmentAPI.update(appointment.id, data, getToken());
   };
 
-  // eslint-disable-next-line no-console
   const onSubmit = async data => {
     await registerAppointment(data);
 

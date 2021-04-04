@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
@@ -41,7 +40,6 @@ const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
     return await appointmentAPI.register(data, getToken());
   };
 
-  // eslint-disable-next-line no-console
   const onSubmit = async data => {
     await registerAppointment(data);
 
