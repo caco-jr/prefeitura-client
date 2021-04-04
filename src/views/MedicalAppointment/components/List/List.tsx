@@ -33,11 +33,28 @@ const MedicalAppointmentList = ({
 }: IProps): JSX.Element => {
   const classes = useStyles();
 
+  const getBeautyDate = (date, time) => {
+    const dateFormat = new Intl.DateTimeFormat('pt', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+
+    const timeFormat = new Intl.DateTimeFormat('pt', {
+      hour: 'numeric',
+      minute: 'numeric',
+    });
+
+    return `${dateFormat.format(new Date(date))} às ${timeFormat.format(
+      new Date(time)
+    )}`;
+  };
+
   return (
     <S.Wrapper>
       <Grid container spacing={3}>
         {list.map((appointment, index) => {
-          const { type, hospital, time } = appointment;
+          const { type, hospital, time, date } = appointment;
 
           return (
             <Grid container item xs={12} md={4} key={index}>
@@ -48,7 +65,7 @@ const MedicalAppointmentList = ({
                     color="textSecondary"
                     gutterBottom
                   >
-                    {time}
+                    {getBeautyDate(date, time)}
                   </Typography>
 
                   <Typography variant="h5" component="h2">
@@ -58,17 +75,12 @@ const MedicalAppointmentList = ({
                   <Typography className={classes.pos} color="textSecondary">
                     <RiHospitalLine /> {hospital}
                   </Typography>
-
-                  <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
-                  </Typography>
                 </CardContent>
 
                 <CardActions>
                   <Button
                     size="small"
+                    color="secondary"
                     onClick={() => handleSelected(appointment)}
                   >
                     Atualizar
