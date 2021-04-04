@@ -15,10 +15,13 @@ export const MedicalAppointmentPage = ({ appointments }): JSX.Element => {
   const [appointmentSelected, setAppointmentSelected] = useState({});
 
   const getAppointments = async () => {
-    const appointmentAPI = new AppointmentService();
-    const updatedAppointments = await appointmentAPI.getAll(getToken());
-
-    setAppointmentsList(updatedAppointments);
+    try {
+      const appointmentAPI = new AppointmentService();
+      const updatedAppointments = await appointmentAPI.getAll(getToken());
+      setAppointmentsList(updatedAppointments);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleAppointmentSelected = appointment => {

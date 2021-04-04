@@ -29,9 +29,13 @@ const MedicalAppointmentUpdate = ({
   const { control, handleSubmit } = useForm();
 
   const registerAppointment = async data => {
-    const appointmentAPI = new AppointmentService();
+    try {
+      const appointmentAPI = new AppointmentService();
 
-    return await appointmentAPI.update(appointment.id, data, getToken());
+      return await appointmentAPI.update(appointment.id, data, getToken());
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const onSubmit = async data => {
