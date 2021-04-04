@@ -1,4 +1,5 @@
 import BaseAPIService from './base';
+import { setCookie } from 'nookies';
 
 class UserService extends BaseAPIService {
   getAll(): Promise<any> {
@@ -21,7 +22,13 @@ class UserService extends BaseAPIService {
     username: string;
     password: string;
   }): Promise<{ access_token: string }> {
-    return this.post({ pathName: `/auth/login`, body: loginInfo });
+    return this.post({ pathName: `/auth/login`, body: loginInfo }).then(
+      response => {
+        setCookie(null, 'token', response.access_token);
+
+        return response;
+      }
+    );
   }
 }
 

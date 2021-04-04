@@ -5,6 +5,7 @@ import { API_EXTERNAL_URL, API_URL } from '@utils/url';
 type IBaseParams = {
   pathName: string;
   isExternal?: boolean;
+  jwtToken?: string;
 };
 
 type IGetParams = IBaseParams;
@@ -28,27 +29,47 @@ export default class BaseAPIService {
     return `${this.handleURLChoice(isExternal)}/${treatedPath}`;
   }
 
-  get({ pathName, isExternal }: IGetParams): Promise<any> {
+  private requestConfig(jwtToken: string) {
+    return {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    };
+  }
+
+  get({ pathName, isExternal, jwtToken }: IGetParams): Promise<any> {
     return axios
-      .get(this.buildURL(pathName, isExternal))
+      .get(this.buildURL(pathName, isExternal), this.requestConfig(jwtToken))
       .then(response => response.data);
   }
 
-  post({ pathName, body, isExternal }: IPostParams): Promise<any> {
+  post({ pathName, body, isExternal, jwtToken }: IPostParams): Promise<any> {
     return axios
-      .post(this.buildURL(pathName, isExternal), body)
+      .post(
+        this.buildURL(pathName, isExternal),
+        body,
+        this.requestConfig(jwtToken)
+      )
       .then(response => response.data);
   }
 
-  put({ pathName, body, isExternal }: IPutParams): Promise<any> {
+  put({ pathName, body, isExternal, jwtToken }: IPutParams): Promise<any> {
     return axios
-      .put(this.buildURL(pathName, isExternal), body)
+      .put(
+        this.buildURL(pathName, isExternal),
+        body,
+        this.requestConfig(jwtToken)
+      )
       .then(response => response.data);
   }
 
-  patch({ pathName, body, isExternal }: IPutParams): Promise<any> {
+  patch({ pathName, body, isExternal, jwtToken }: IPutParams): Promise<any> {
     return axios
-      .patch(this.buildURL(pathName, isExternal), body)
+      .patch(
+        this.buildURL(pathName, isExternal),
+        body,
+        this.requestConfig(jwtToken)
+      )
       .then(response => response.data);
   }
 }
