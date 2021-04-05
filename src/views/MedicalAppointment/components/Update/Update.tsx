@@ -19,13 +19,23 @@ import * as S from './Update.styles';
 import ReactHookFormSelect from '@components/ReactHookFormSelect';
 import AppointmentService from '@services/api/appointment';
 import { getToken } from '@utils/cookies';
+import { IHealthCenter } from '@interfaces/healthCenterInterface';
+
+type IProps = {
+  healthCenters: IHealthCenter[];
+  updateScreen: () => void;
+  handleModalClose: () => void;
+  isOpen: boolean;
+  appointment: any;
+};
 
 const MedicalAppointmentUpdate = ({
   updateScreen,
   isOpen,
   handleModalClose,
   appointment,
-}): JSX.Element => {
+  healthCenters,
+}: IProps): JSX.Element => {
   const { control, handleSubmit } = useForm();
 
   const registerAppointment = async data => {
@@ -63,7 +73,6 @@ const MedicalAppointmentUpdate = ({
             <S.FormWrapper>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Controller
-                  id="date-picker-inline"
                   name="date"
                   control={control}
                   required
@@ -112,22 +121,20 @@ const MedicalAppointmentUpdate = ({
 
               <FormControl required>
                 <ReactHookFormSelect
-                  id="hospital"
-                  name="hospital"
-                  label="Hospital"
+                  name="institution_id"
+                  label="Instituição de Saúde"
                   control={control}
-                  defaultValue={appointment.hospital}
+                  defaultValue={appointment.institution_id}
                   margin="normal"
                   required
                 >
                   <MenuItem value="">Escolha uma opção</MenuItem>
-                  <MenuItem value="Bom Clima">Bom Clima</MenuItem>
 
-                  <MenuItem value="Nossa Senhora">
-                    Nossa Senhora Fátima
-                  </MenuItem>
-
-                  <MenuItem value="São Luiz">São Luiz</MenuItem>
+                  {healthCenters.map(({ name, id, type_institution }) => (
+                    <MenuItem value={id} key={id}>
+                      {name} - {type_institution}
+                    </MenuItem>
+                  ))}
                 </ReactHookFormSelect>
 
                 <FormHelperText>Required</FormHelperText>

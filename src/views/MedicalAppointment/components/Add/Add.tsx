@@ -21,8 +21,17 @@ import * as S from './Add.styles';
 import ReactHookFormSelect from '@components/ReactHookFormSelect';
 import AppointmentService from '@services/api/appointment';
 import { getToken } from '@utils/cookies';
+import { IHealthCenter } from '@interfaces/healthCenterInterface';
 
-const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
+type IProps = {
+  healthCenters: IHealthCenter[];
+  updateScreen: () => void;
+};
+
+const MedicalAppointmentAdd = ({
+  updateScreen,
+  healthCenters,
+}: IProps): JSX.Element => {
   const [open, setOpen] = useState(false);
   const { control, handleSubmit } = useForm();
 
@@ -122,22 +131,20 @@ const MedicalAppointmentAdd = ({ updateScreen }): JSX.Element => {
 
               <FormControl required>
                 <ReactHookFormSelect
-                  id="hospital"
-                  name="hospital"
-                  label="Hospital"
+                  name="institution_id"
+                  label="Instituição de Saúde"
                   control={control}
                   defaultValue={''}
                   margin="normal"
                   required
                 >
                   <MenuItem value="">Escolha uma opção</MenuItem>
-                  <MenuItem value="Bom Clima">Bom Clima</MenuItem>
 
-                  <MenuItem value="Nossa Senhora">
-                    Nossa Senhora Fátima
-                  </MenuItem>
-
-                  <MenuItem value="São Luiz">São Luiz</MenuItem>
+                  {healthCenters.map(({ name, id, type_institution }) => (
+                    <MenuItem value={id} key={id}>
+                      {name} - {type_institution}
+                    </MenuItem>
+                  ))}
                 </ReactHookFormSelect>
 
                 <FormHelperText>Required</FormHelperText>

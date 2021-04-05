@@ -8,8 +8,17 @@ import MedicalAppointmentList from './components/List';
 import AppointmentService from '@services/api/appointment';
 import MedicalAppointmentUpdate from './components/Update';
 import { getToken } from '@utils/cookies';
+import { IHealthCenter } from '@interfaces/healthCenterInterface';
 
-export const MedicalAppointmentPage = ({ appointments }): JSX.Element => {
+type IProps = {
+  appointments: any[];
+  healthCenters: IHealthCenter[];
+};
+
+export const MedicalAppointmentPage = ({
+  appointments,
+  healthCenters,
+}: IProps): JSX.Element => {
   const [appointmentsList, setAppointmentsList] = useState(appointments);
   const [open, setOpen] = useState(false);
   const [appointmentSelected, setAppointmentSelected] = useState({});
@@ -35,17 +44,22 @@ export const MedicalAppointmentPage = ({ appointments }): JSX.Element => {
         <Container fixed>
           <h1>Consultas</h1>
 
-          <MedicalAppointmentAdd updateScreen={getAppointments} />
+          <MedicalAppointmentAdd
+            updateScreen={getAppointments}
+            healthCenters={healthCenters}
+          />
 
           <MedicalAppointmentUpdate
             updateScreen={getAppointments}
             isOpen={open}
             handleModalClose={() => setOpen(false)}
             appointment={appointmentSelected}
+            healthCenters={healthCenters}
           />
 
           <MedicalAppointmentList
             list={appointmentsList}
+            healthCenters={healthCenters}
             handleSelected={handleAppointmentSelected}
           />
         </Container>

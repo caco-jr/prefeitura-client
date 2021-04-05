@@ -6,11 +6,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { RiHospitalLine } from 'react-icons/ri';
+import { IHealthCenter } from '@interfaces/healthCenterInterface';
 
 import * as S from './List.styles';
 
 type IProps = {
   list: any;
+  healthCenters: IHealthCenter[];
   handleSelected: (appointment: any) => void;
 };
 
@@ -30,6 +32,7 @@ const useStyles = makeStyles({
 const MedicalAppointmentList = ({
   list,
   handleSelected,
+  healthCenters,
 }: IProps): JSX.Element => {
   const classes = useStyles();
 
@@ -50,11 +53,18 @@ const MedicalAppointmentList = ({
     )}`;
   };
 
+  const getHealthCenterInfo = (id: string): IHealthCenter => {
+    return healthCenters.find(healthCenter => healthCenter.id === id);
+  };
+
   return (
     <S.Wrapper>
       <Grid container spacing={3}>
         {list.map((appointment, index) => {
-          const { service_type, hospital, time, date } = appointment;
+          const { service_type, institution_id, time, date } = appointment;
+          const { name, address, type_institution } = getHealthCenterInfo(
+            institution_id
+          );
 
           return (
             <Grid container item xs={12} md={4} key={index}>
@@ -73,7 +83,12 @@ const MedicalAppointmentList = ({
                   </Typography>
 
                   <Typography className={classes.pos} color="textSecondary">
-                    <RiHospitalLine /> {hospital}
+                    <RiHospitalLine /> {name} - {type_institution}
+                  </Typography>
+
+                  <Typography variant="body2" component="p">
+                    {address.street}, {address.number}, {address.district},{' '}
+                    {address.cep}
                   </Typography>
                 </CardContent>
 
