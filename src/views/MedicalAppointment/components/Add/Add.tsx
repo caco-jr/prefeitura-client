@@ -161,8 +161,12 @@ const MedicalAppointmentAdd = ({
                   required
                 >
                   <MenuItem value="">Escolha uma opção</MenuItem>
-                  <MenuItem value="pediatra">Pediatra</MenuItem>
-                  <MenuItem value="oftalmologista">Oftalmologista</MenuItem>
+
+                  {healthCenters[0].services.map((service, index) => (
+                    <MenuItem value={service} key={index}>
+                      {service}
+                    </MenuItem>
+                  ))}
                 </ReactHookFormSelect>
 
                 <FormHelperText>Required</FormHelperText>
