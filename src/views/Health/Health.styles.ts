@@ -8,20 +8,20 @@ export const Title = styled.h1`
 
 export const CardWrapper = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
 
   .c-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
     cursor: pointer;
     transform: translateY(0);
     transition: 0.3s all ease;
 
     &__content {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column;
+      gap: 10px;
       font-size: var(--title-sm);
     }
 
