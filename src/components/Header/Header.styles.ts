@@ -16,4 +16,8 @@ export const Title = styled.span`
   font-weight: bold;
   font-size: var(--title-md);
   cursor: pointer;
+
+  @media (max-width: 992px) {
+    font-size: var(--text-md);
+  }
 `;

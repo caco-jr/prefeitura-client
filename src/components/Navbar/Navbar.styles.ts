@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.section``;
+export const Wrapper = styled.section`
+  .menu-icon {
+    line {
+      stroke: #fff;
+    }
+  }
+`;
 
 export const List = styled.section`
   display: grid;
