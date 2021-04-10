@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.footer`
-  height: 50px;
+  min-height: 50px;
   background-color: var(--green-400);
   margin-top: 20px;
   padding: 10px 0;
