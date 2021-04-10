@@ -14,7 +14,7 @@ export const HealthCentersPage = ({ list }: IProps): JSX.Element => {
   const [filteredList, setFilteredList] = useState<IHealthCenter[]>(list);
 
   return (
-    <Layout title="Health centers">
+    <Layout title="Instituições de Saúde">
       <section className="container">
         <S.Wrapper>
           <h1>Instituições de Saúde</h1>

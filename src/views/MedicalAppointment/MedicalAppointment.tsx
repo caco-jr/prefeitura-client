@@ -39,7 +39,7 @@ export const MedicalAppointmentPage = ({
   };
 
   return (
-    <Layout title="Consultas">
+    <Layout title="Consultas Médicas">
       <S.Wrapper>
         <Container fixed>
           <h1>Consultas</h1>

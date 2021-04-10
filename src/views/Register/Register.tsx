@@ -11,7 +11,7 @@ export const RegisterPage = (): JSX.Element => {
   const { query } = useRouter();
 
   return (
-    <Layout title="Register">
+    <Layout title="Cadastro">
       <section className="container">
         <S.Wrapper>
           <S.Title>Cadastro</S.Title>

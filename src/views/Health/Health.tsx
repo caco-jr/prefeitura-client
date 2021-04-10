@@ -6,7 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 export const HealthPage = (): JSX.Element => (
-  <Layout title="Health">
+  <Layout title="Saúde">
     <section className="container">
       <S.Wrapper>
         <S.Title>O que você gostaria de consultar?</S.Title>
