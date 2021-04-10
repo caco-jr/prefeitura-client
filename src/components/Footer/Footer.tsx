@@ -5,10 +5,7 @@ import * as S from './Footer.styles';
 const Footer = (): JSX.Element => (
   <S.Wrapper>
     <Container fixed>
-      <S.Text>
-        O conteúdo é meramente ilustrativo, trata-se de um projeto de TCC para a
-        faculdade PUC Minas
-      </S.Text>
+      <S.Text>Conteúdo educacional - Prova de conceito TCC PUC Minas</S.Text>
     </Container>
   </S.Wrapper>
 );
