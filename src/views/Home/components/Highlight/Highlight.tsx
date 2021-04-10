@@ -5,16 +5,37 @@ import Container from '@material-ui/core/Container';
 import * as S from './Highlight.styles';
 
 const HomeHighlight = (): JSX.Element => (
-  <S.Wrapper>
-    <Container fixed>
+  <Container fixed>
+    <S.Wrapper>
       <Image
-        src="/images/vacina.png"
-        width="1166"
-        height="217"
+        src="/images/highlight.jpeg"
+        width="1280"
+        height="720"
         alt="Campanha de vacinação"
       />
-    </Container>
-  </S.Wrapper>
+
+      <Image
+        src="/images/yoga.jpeg"
+        width="1280"
+        height="720"
+        alt="Campanha de Yoga"
+      />
+
+      <Image
+        src="/images/alimentacao.jpeg"
+        width="1280"
+        height="720"
+        alt="Campanha de alimentação"
+      />
+
+      <Image
+        src="/images/esporte.jpeg"
+        width="1280"
+        height="720"
+        alt="Campanha de esporte"
+      />
+    </S.Wrapper>
+  </Container>
 );
 
 export default HomeHighlight;

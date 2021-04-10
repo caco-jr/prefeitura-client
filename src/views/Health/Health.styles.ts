@@ -8,7 +8,7 @@ export const Title = styled.h1`
 
 export const CardWrapper = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
 
   .c-card {
