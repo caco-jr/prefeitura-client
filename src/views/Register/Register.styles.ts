@@ -6,6 +6,10 @@ export const Wrapper = styled.section`
   .button-redirect {
     margin: 16px auto 0;
     width: 400px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 `;
 
