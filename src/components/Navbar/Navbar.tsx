@@ -44,7 +44,7 @@ const Navbar = (): JSX.Element => {
           </S.List>
         </Hidden>
 
-        <Hidden smUp>
+        <Hidden mdUp>
           <IconButton
             aria-label="more"
             aria-controls="long-menu"
